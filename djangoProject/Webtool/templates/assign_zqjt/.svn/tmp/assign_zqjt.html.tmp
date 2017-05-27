@@ -1,0 +1,156 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>雷霆项目组</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< .mine
+		<script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/webtool/site_media/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/webtool/site_media/lib/jquery-treegrid/js/jquery.treegrid.js" type="text/javascript"></script>
+        <!-- easyui js引用加入!-->
+=======
+>>>>>>> .r142620
+        <script src="/webtool/site_media/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/jquery-treegrid/js/jquery.treegrid.js" type="text/javascript"></script>
+        <!-- easyui js引用加入!-->
+        
+        
+        <!-- D引用加入!-->
+        <script src="/webtool/site_media/lib/other/js/djangoajax.js" type="text/javascript"></script> 
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+                    
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/default/easyui.css" type="text/css"></link>
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/icon.css" type="text/css"></link>
+<<<<<<< .mine
+		     
+		
+        <script src="/webtool/site_media/lib/assign_zqjt/assign_zqjt.js" type="text/javascript"></script>
+		
+				
+=======
+             
+        
+        <script src="/webtool/site_media/lib/assign_zqjt/assign_zqjt.js" type="text/javascript"></script>
+        
+                
+>>>>>>> .r142620
+    </head>
+<<<<<<< .mine
+    <div class='easyui-layout' style="width:1800px; height:1000px;">
+		<div title="最强军团 翻译测试--任务分配" class="easyui-panel" data-options="region:'north'">
+        </div>
+		
+        <div class="" data-options="region:'west'" style="width:212px;">
+			<table id="svn_treegrid" style="width:210px;" toolbar='#tree_tb'></table>
+        </div>
+		
+        <div id="svn_div_datagrid" title="" class="easyui-panel" data-options="region:'center'" style="width:1600px;">
+=======
+    <div class='easyui-layout' style="width:1600px; height:1000px;">
+        <div title="最强军团 翻译测试--任务分配" class="easyui-panel" data-options="region:'north'">
+        </div>
+        <div class="" data-options="region:'west'" style="width:200px;">
+            <table id="svn_treegrid" style="width:200px;"></table>
+            <!--ul class="easyui-tree">
+                <li>
+                    <span>操作人</span>
+                    <ul>
+                        <li>
+                            <span><a href="#" onclick="selectQA_HCQ()">黄超群</a></span>
+                        </li>
+                        <li>
+                            <span><a href="#" onclick="selectQA_WB()">汪斌</a></span>
+                        </li>
+                        <li>
+                            <span><a href="#" onclick="selectQA_ZJ()">朱军</a></span>
+                        </li>
+                        <li>
+                            <span><a href="#" onclick="selectQA_XYJ()">徐勇军</a></span>
+                        </li>
+                        <li>
+                            <span><a href="#" onclick="">{{currentuser}}</a></span>
+                        </li>
+                    </ul>
+                </li>
+            </ul!-->
+        </div>
+        <div id="svn_div_datagrid" title="" class="easyui-panel" data-options="region:'center'" style="width:1400px;">
+>>>>>>> .r142620
+            <table id="svn_maingrid" class="easyui-datagrid" toolbar='#tb'></table>
+        </div>
+		
+		<div id="tree_tb" style="text-align:right;">
+			<a href='#' class='easyui-linkbutton' plain='true' iconCls='icon-remove' onclick="delete_table()">删除选中表</a>  
+		</div>
+		
+        <div id="tb" style="text-align:left;">
+<<<<<<< .mine
+			<div >
+				<span>操作人:</span><span id="currentuser">{{currentuser}}</span>
+				<a href="/webtool/openid/logout/">登出</a>
+			</div>
+=======
+            <div >
+                <span>操作人:</span><span id="currentuser">{{currentuser}}</span>
+                <a href="/webtool/openid/logout/">登出</a>
+            </div>
+>>>>>>> .r142620
+            <span>跟进QA</span>
+            <select id="QA_to_select" class="easyui-combobox" style="width:80px;">
+                <option>所有</option>
+				<option>请选择</option>
+                <option>黄超群</option>
+                <option>汪斌</option>
+                <option>朱军</option>
+                <option>徐勇军</option>
+            </select>
+            <span>状态</span>
+            <select id="state_to_select" class="easyui-combobox" style="width:80px;">
+                <option>所有</option>
+                <option>完成</option>
+                <option>未完成</option>
+				<option>文本已测</option>
+				<option>暂未找到</option>
+            </select>
+            <a href='#' class='easyui-linkbutton' plain='true' iconCls='icon-search' onclick="search_data()">查询</a>         
+            <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="save_to_db()">保存所有</a>
+<<<<<<< .mine
+			<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="completeAll()">一键完成</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="texttestedAll()">一键文本已测</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="notfoundAll()">一键暂未找到</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" plain="true" onclick="export_excel()">导出excel</a>
+			
+			 
+=======
+            <a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="completeAll()">一键完成</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" plain="true" onclick="export_excel()">导出excel</a>
+            
+             
+>>>>>>> .r142620
+            <a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="assign()" style="float:right">一键分配</a>            
+            <a style="float:right">
+            <span>跟进QA</span>
+            <select id= "allocate_qaer" class="easyui-combobox" style="width:80px; float:right">
+                <option>请选择</option>
+                <option>黄超群</option>
+                <option>汪斌</option>
+                <option>朱军</option>
+                <option>徐勇军</option>
+            </select>
+<<<<<<< .mine
+            </a>  
+			<div id="search_tb" style="padding:3px">    
+				<span>column0:</span>    
+				<input id="input_column0" style="line-height:20px;border:1px solid #ccc">    
+				<span>column2:</span>    
+				<input id="input_column2" style="line-height:20px;border:1px solid #ccc">    
+				<a href='#' class='easyui-linkbutton' plain='true' iconCls='icon-search' onclick="search_tb()">查询</a>  
+				<a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="get_result()" style="float:right">完成状况统计</a>   				
+			</div> 
+=======
+            </a>  
+            
+>>>>>>> .r142620
+        </div>
+    </div>
+</html>

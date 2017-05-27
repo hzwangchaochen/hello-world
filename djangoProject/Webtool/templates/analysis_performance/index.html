@@ -1,0 +1,366 @@
+﻿<!doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:bd=http://www.baidu.com/2010/xbdml>
+    <head>
+        <title>MTL实验室</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/webtool/site_media/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/webtool/site_media/lib/jquery-treegrid/js/jquery.treegrid.js" type="text/javascript"></script>
+        <!-- easyui js引用加入!-->    
+        <!-- D引用加入!-->
+        <script src="/webtool/site_media/lib/other/js/djangoajax.js" type="text/javascript"></script> 
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+                    
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/default/easyui.css" type="text/css">
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/icon.css" type="text/css">
+        <script src="/webtool/site_media/lib/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/layer/extend/layer.ext.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="/webtool/site_media/lib/highcharts/highcharts.js" type="text/javascript"></script>
+		<script type="text/javascript">
+            var currentProject='LX6';
+            var currentSheet=null;
+            $(function(){
+				$('#fps_grid').datagrid({
+                    url:'/webtool/analysis_performance/getDataFromMysql/',
+                    fitColumns:true,
+                    height:'auto',
+                    rownumbers:true,
+                    pagination:true,
+                    pageSize:50,
+                    pageList:[50,100,150,200],
+                    collapsible:false,
+                    fit:true,
+                    nowrap:false,
+                    columns:[[
+                        { field: 'frameIndex', title:'Frame Index', align: 'center', sortable:true,width:20},
+                        { field: 'FPS', title:'FPS', align: 'center', sortable:true,width:20}					
+                    ]],
+                });
+
+                $('#render_grid').datagrid({
+                    url:'/webtool/analysis_performance/getDataFromMysql/',
+                    fitColumns:true,
+                    height:'auto',
+                    rownumbers:true,
+                    pagination:true,
+                    pageSize:50,
+                    pageList:[50,100,150,200],
+                    collapsible:false,
+                    fit:true,
+                    nowrap:false,
+                    columns:[[
+                        { field: 'frameIndex', title:'Frame Index', align: 'center', sortable:true,width:20},
+                        { field: 'drawCalls', title:"Draw Calls", align: 'center', sortable:true,width:20},
+                        { field: 'triangles', title:'Triangles', align: 'center', sortable:true,width:20}                   
+                    ]],
+                });
+
+                $('#memory_grid').datagrid({
+                    url:'/webtool/analysis_performance/getDataFromMysql/',
+                    fitColumns:true,
+                    height:'auto',
+                    rownumbers:true,
+                    pagination:true,
+                    pageSize:50,
+                    pageList:[50,100,150,200],
+                    collapsible:false,
+                    fit:true,
+                    nowrap:false,
+                    columns:[[
+                        { field: 'frameIndex', title:'Frame Index', align: 'center', sortable:true,width:20},
+                        { field: 'UsedTotal', title:"Used Total", align: 'center', sortable:true,width:20},
+                        { field: 'UsedUnity', title:'Used Unity', align: 'center', sortable:true,width:20},   
+                        { field: 'UsedMono', title:'Used Mono', align: 'center', sortable:true,width:20},
+                        { field: 'ReservedTotal', title:'Reserved Total', align: 'center', sortable:true,width:20},
+                        { field: 'ReservedUnity', title:'Reserved Unity', align: 'center', sortable:true,width:20},
+                        { field: 'ReservedMono', title:'Reserved Mono', align: 'center', sortable:true,width:20},
+                        { field: 'ReservedGFX', title:'Reserved GFX', align: 'center', sortable:true,width:20}                       
+                    ]],
+                });
+
+                $('#res_memory_grid').datagrid({
+                    url:'/webtool/analysis_performance/getDataFromMysql/',
+                    fitColumns:true,
+                    height:'auto',
+                    rownumbers:true,
+                    pagination:true,
+                    pageSize:50,
+                    pageList:[50,100,150,200],
+                    collapsible:false,
+                    fit:true,
+                    nowrap:false,
+                    columns:[[
+                        { field: 'frameIndex', title:'Frame Index', align: 'center', sortable:true,width:20},
+                        { field: 'TextureNum', title:"Texture Num", align: 'center', sortable:true,width:20},
+                        { field: 'TextureMem', title:'Texture Mem', align: 'center', sortable:true,width:20},   
+                        { field: 'MeshNum', title:'Mesh Num', align: 'center', sortable:true,width:20},
+                        { field: 'MeshMem', title:'Mesh Mem', align: 'center', sortable:true,width:20},
+                        { field: 'MaterialNum', title:'Material Num', align: 'center', sortable:true,width:20},
+                        { field: 'MaterialMem', title:'Material Mem', align: 'center', sortable:true,width:20},
+                        { field: 'AnimClipNum', title:'AnimClip Num', align: 'center', sortable:true,width:20},
+                        { field: 'AnimClipMem', title:'AnimClip Mem', align: 'center', sortable:true,width:20},  
+                        { field: 'AudioClipNum', title:'AudioClip Num', align: 'center', sortable:true,width:20},  
+                        { field: 'AudioClipMem', title:'AudioClip Mem', align: 'center', sortable:true,width:20},                        
+                    ]],
+                });
+
+                $('#unity_treegrid').treegrid({
+                    url:'/webtool/analysis_performance/findAllSqlName/'+currentProject+'/',
+                    idField:'Tables_in_leiting',
+                    treeField:'name',
+					width:230,
+                    columns:[[
+                        {field:'Tables_in_leiting',title:'主目录',width:200,
+                            formatter:function(value,rowData){
+                                var s = "<a href='#' onclick=selectTable('"+value+"')>"+value+"</a>";
+                                return s;
+                            }
+                        }
+                    ]]
+                });
+
+                $('#unity_tree').tree({
+                    url:'/webtool/analysis_performance/findAllSqlName/'+currentProject+'/',
+                    onlyLeafCheck:true,
+                    onClick:function(node){
+                        if($('#unity_tree').tree('isLeaf',node.target))
+                        {
+                            selectTable(node.text);
+                        }
+                    },
+                    onContextMenu: function (e,node) { //右键时触发事件  
+                        //三个参数：e里面的内容很多，真心不明白，rowIndex就是当前点击时所在行的索引，rowData当前行的数据
+                        if($('#unity_tree').tree('isLeaf',node.target))
+                        {
+                            e.preventDefault(); //阻止浏览器捕获右键事件
+                            $('#unity_tree').tree('select', node.target);         
+                            $('#menu').menu('show', {  
+                                //显示右键菜单  
+                                left: e.pageX,//在鼠标点击处显示菜单  
+                                top: e.pageY  
+                            });  
+                            e.preventDefault();  //阻止浏览器自带的右键菜单弹出   
+                        }           
+
+                    }         
+                });
+
+                $('#Project_to_select').combobox({
+                    onChange: function(newValue,oldValue){
+                        selectProject(newValue);   
+                    }
+                });
+            });
+
+            
+            function InitialYaxisLabelsFPS(chart)
+            {
+                var max=chart.yAxis[0].dataMax;
+                chart.yAxis[0].update({
+                    max:max
+                });
+            }
+
+            function InitialYaxisLabelsDC(chart)
+            {
+                var max=chart.yAxis[0].dataMax;
+                if(max<200) max=220;
+                chart.yAxis[0].update({
+                    max:max
+                });
+            }
+
+            function InitialYaxisLabelsTRI(chart)
+            {
+                var max=chart.yAxis[0].dataMax;
+                if(max<100000) max=100000+10;
+                chart.yAxis[0].update({
+                    max:max
+                });
+            }
+       
+            function selectProject(newValue){
+                currentProject=newValue;
+                $('#unity_tree').tree({
+                    url:'/webtool/analysis_performance/findAllSqlName/'+currentProject+'/',
+                });
+            }
+            
+            function selectTable(value){
+                currentSheet=value;
+                $("#scene").load("/webtool/analysis_performance/sceneResult/"+currentSheet+'/');
+				$('#fps_grid').datagrid(
+                    'reload',
+                    {
+                        SheetType:'FPS',
+                        SheetName:value
+                    }
+                );
+                $('#render_grid').datagrid(
+                    'reload',
+                    {
+                        SheetType:'RD',
+                        SheetName:value
+                    }
+                );
+                $('#memory_grid').datagrid(
+                    'reload',
+                    {
+                        SheetType:'MEM',
+                        SheetName:value
+                    }
+                );
+                $('#res_memory_grid').datagrid(
+                    'reload',
+                    {
+                        SheetType:'RMEM',
+                        SheetName:value
+                    }
+                );
+            }
+
+            function removeIt(){
+                var node = $('#unity_tree').tree('getSelected');
+                layer.alert(node.text);
+                if(!$('#unity_tree').tree('isLeaf',node.target))
+                {
+                    layer.alert('不能删除父节点');
+                }
+                if(node===null) {
+                    layer.alert('请选择要删除的条目');
+                    return;
+                }
+
+                layer.confirm('确定要删除条目'+node.text+'?', function(index){
+                    $.ajax(
+                        {
+                            url: "/webtool/analysis_performance/deleteEntry/"+node.text+"/",
+                            type: 'POST',
+                            cache: false,
+                            success: function () {
+                                currentSheet=null;
+								//$('#unity_tree').tree('unselectAll');
+                                reloadTreeGrid();
+                            }
+                        }
+                    );  
+                    layer.close(index);
+                });
+            }
+			
+            function reloadTreeGrid(){
+                $('#unity_tree').tree('reload');
+            }
+
+            function drawResult(){
+                if(currentSheet==null)
+                    layer.alert('请选择表格');
+                else 
+                    window.open("/webtool/analysis_performance/drawResult/"+currentSheet+"/");
+            }
+
+            function export_excel()
+            {
+                if(currentSheet==null)
+                    alert('请选择所要导出的表格');
+                else    
+                    window.open("/webtool/analysis_performance/exportToExcel/"+currentSheet+"/");
+            }
+            function readme(){
+                layer.alert('前期准备工作：<br>1.将SProfiler.cs文件放到项目的editor文件夹中；<br>2.打开并运行项目；<br>'+
+                            '3.开启untity的profiler功能，在unity里找到SProfiler插件并start，运行一定时间后点击stop；<br>'+
+                            '4.上述过程就将profile的分析结果存为不同的log文件。<br>'+
+                            '网站上传文件方法：<br>1.点击标题栏右侧的"上传log文件"按钮，进入到上传界面；<br>'+
+                            '2.按照要求在表单中上传3个log文件，并选择项目名和SVN号，再点击"提交"即可。'
+                            ,-1,'网站使用说明');
+            }
+		</script>
+        <style type="text/css">
+        .datagrid-btable .datagrid-cell{overflow: hidden;text-overflow:ellipsis;white-space:nowrap;}
+        </style>
+    </head>
+	<body>
+        <nav class="navbar-default navbar-static-top" role="navigation" style="width:1800px;"> 
+            <div class="container-fluid"> 
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/webtool/analysis_performance/index/">首页</a>
+                    <a class="navbar-brand" onclick="readme()" style="margin-left: 50px">网站使用说明</a> 
+                    <a class="navbar-brand navbar-right" href="/webtool/analysis_performance/uploadLog/">上传log文件</a>
+
+                </div> 
+                <div>
+                    <ul class="nav navbar-nav navbar-right"> 
+                        <li class="dropdown"> 
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{currentuser|safe}}<b class="caret"></b></a> 
+                            <ul class="dropdown-menu"> 
+                                <li><a href="/webtool/openid/logout/">登出</a></li>
+                            </ul> 
+                        </li>
+                        <li class="dropdown"> 
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">下载链接<b class="caret"></b> 
+                            </a> 
+                            <ul class="dropdown-menu"> 
+                                <li><a href="/webtool/analysis_performance/downloadFile/">SProfiler.cs</a></li>
+                                <li class="divider"></li> 
+                                <li><a href="https://gamehz.163.org/svn/st/Test/zhujie/%E5%91%A8%E5%B3%B0%E7%9A%84ipa%E6%80%A7%E8%83%BD%E9%87%87%E6%A0%B7%E4%BB%A5%E5%8F%8A%E5%88%86%E6%9E%90/" target="_blank">SVN路径</a></li> 
+                            </ul> 
+                        </li> 
+                    </ul> 
+                    <p class="navbar-text navbar-right">当前登录人：</p>
+                </div> 
+            </div> 
+        </nav>
+        <div class='easyui-layout' style="width:1800px;height:1000px;">
+			<div data-options="region:'west',split:true" style="width:380px;">
+                <div style="padding:10px;margin-left:10px">
+                    <select id="Project_to_select" class="easyui-combobox" style="width:180px;">
+                        <option>LX6</option>
+                        <option>L12</option>
+                        <option>L13</option>
+                        <option>L15</option>
+                        <option>L10</option>
+                        <option>LH01</option>
+                        <option>盘古</option>
+                    </select>
+                </div>
+                <div id="tree_tb">
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" plain="true" onclick="export_excel()" style="margin-left:20px">导出excel</a>
+                </div>
+                <ul id="unity_tree"></ul>
+            </div>
+
+            <div title="" class="easyui-tabs" data-options="region:'center'">
+
+				<div title="FPS结果">
+					<table id="fps_grid" class="easyui-datagrid"></table>
+				</div>
+                <div title="Rendering结果">
+                    <table id="render_grid" class="easyui-datagrid"></table>
+                </div>
+                <div title="Memory结果">
+                    <table id="memory_grid" class="easyui-datagrid"></table>
+                </div>
+                <div title="资源memory结果">
+                    <table id="res_memory_grid" class="easyui-datagrid"></table>
+                </div>
+
+                <div title="图形化结果">
+                <div id="grid_tb" >
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="drawResult()" style="margin-left:10px">总体性能趋势</a>
+                    <div id="scene"></div>
+                </div>
+                <div id="menu" class="easyui-menu" style="width: 30px; display: none;">  
+                  <!--放置一个隐藏的菜单Div-->  
+                  <div id="btn_Delete" data-options="iconCls:'icon-remove'" onclick="removeIt()">删除</div>  
+                  <!--具体的菜单事件请自行添加，跟toolbar的方法是基本一样的-->  
+                </div>             
+            </div>
+        </div>
+        </div>
+	</body>
+</html>
