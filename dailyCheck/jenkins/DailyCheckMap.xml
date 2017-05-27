@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<DailyCheckMap>
+  <GuidCheck>检查文件的guid是否发生改变</GuidCheck>
+  <FileNameCheck>检查文件名是否符合要求</FileNameCheck>
+  <MatNameCheck>检查mat文件的命名是否符合要求</MatNameCheck>
+  <SceneMatColorCheck>检查项目中scene使用的mat颜色设置是否正确</SceneMatColorCheck>
+  <UIResourcesCheck>检查图片资源是否符合标准</UIResourcesCheck>
+  <CheckInvalidFileType>检查是否有不符合要求的文件类型</CheckInvalidFileType>
+  <CheckLightmapName>检查烘焙文件lightmap的命名是否正确</CheckLightmapName>
+  
+  <ResourcesOutlineCheck>统计Res目录下所有资源文件的大小类型等信息</ResourcesOutlineCheck>
+  
+  <CheckShaderNameInEditor>检查shader的类型是否正确</CheckShaderNameInEditor>
+  <CheckModelSlotInPrefabInEditor>检查modelSlot中body属性的transform是否符合标准</CheckModelSlotInPrefabInEditor>
+  <CheckMissingScriptInPrefabInEditor>检查prefab中是否有脚本为空</CheckMissingScriptInPrefabInEditor>
+  <CheckMissingScriptInSceneInEditor>检查场景中是否有脚本为空</CheckMissingScriptInSceneInEditor>
+  <CheckMeshColliderInSceneInEditor>检查场景中是否有mesh collider</CheckMeshColliderInSceneInEditor>
+  <CheckTerrainInSceneInEditor>检查场景中是否有Terrain</CheckTerrainInSceneInEditor>
+  
+  <CheckAnimNameInEditor>检查Animation的名字是否与文件名一致</CheckAnimNameInEditor>
+  <CheckRepeatedMeshInEditor>检查一个FBX文件中是否出现两个相同的mesh文件</CheckRepeatedMeshInEditor>
+  <CheckBoneNumInAnimInEditor>检查anim文件中的骨骼数量是否超标</CheckBoneNumInAnimInEditor>
+  <CheckAnimClipLegacyInEditor>检查AnimationClip的类型是否是legacy</CheckAnimClipLegacyInEditor>
+  <CheckAnimNotInConfigInEditor>检查prefab中是否有没有配置的动作文件</CheckAnimNotInConfigInEditor>
+  <CheckAnimNotInPrefabInEditor>检查prefab中是否丢失已经配置的动作文件</CheckAnimNotInPrefabInEditor>
+  <CheckAtlasCompressedInEditor>检查UI的图集是否正确设置</CheckAtlasCompressedInEditor>
+  <CheckRendererWithAnimationInEditor>检查character中的animation上是否有一个Renderer组件</CheckRendererWithAnimationInEditor>
+  <CheckCullingTypeInAnimInEditor>检查character中的animation的CullingType是否是BasedOnRenderers</CheckCullingTypeInAnimInEditor>
+  <CheckAnimClipInPrefabIsStrippingInEditor>检查Prefab上的Animation组件中的AnimationClip是否已抽取</CheckAnimClipInPrefabIsStrippingInEditor>
+  
+  
+  <CheckTextureSizeInEditor>检查贴图的大小是否符合标准</CheckTextureSizeInEditor>
+  <CheckSubMeshInPrefabInEditor>检查模型的子面片数是否唯一</CheckSubMeshInPrefabInEditor>
+  <CheckVertexAndTrigsInPrefabInEditor>检查模型的顶点数、面数、三角形数是否符合标准</CheckVertexAndTrigsInPrefabInEditor>
+  <CheckMatNumInMeshRendererInEditor>检查mesh renderer中material数量是否是一</CheckMatNumInMeshRendererInEditor>
+  <CheckSkinnedMeshRendererNumInPrefabInEditor>检查prefab中的蒙皮数量是否超标</CheckSkinnedMeshRendererNumInPrefabInEditor>
+  <CheckNeedlessColliderAndRigidbodyInEffectInEditor>检查特效中多余的collider和rigidbody</CheckNeedlessColliderAndRigidbodyInEffectInEditor>
+  <CheckBoneNumInPrefabInEditor>检查character模型中的骨骼数是否超标</CheckBoneNumInPrefabInEditor>
+  <CheckBoneNumInAnimInEditor>检查特效中每个anim中的骨骼数是否超标</CheckBoneNumInAnimInEditor>
+  <CheckConflictInMac>检查mac机上的文件是否存在冲突</CheckConflictInMac>
+  
+</DailyCheckMap>
