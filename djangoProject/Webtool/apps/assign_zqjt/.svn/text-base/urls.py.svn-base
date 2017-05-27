@@ -1,8 +1,0 @@
-from django.conf.urls import url
-import views
-
-urlpatterns = [
-    url(r'^index/$', views.index),
-    url(r'^getDataFromMysql/$', views.getDataFromMysql),
-	url(r'^updateDataToMysql/$', views.updateDataToMysql),
-]
