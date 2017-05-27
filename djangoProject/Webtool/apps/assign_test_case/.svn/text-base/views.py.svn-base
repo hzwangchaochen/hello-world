@@ -1,0 +1,68 @@
+# coding:utf-8
+import json
+from json import *
+import MySQLdb
+import MySQLdb.cursors
+
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+
+def index(request):
+    return render_to_response(r'assign_zqjt/assign_zqjt.html')
+
+
+def getDataFromMysql(request):
+    res={}
+    conn= MySQLdb.connect(host='localhost',port = 3306,user='root',passwd='123456',db ='leiting',charset='utf8', cursorclass = MySQLdb.cursors.DictCursor)
+    cursor = conn.cursor()
+    if request.POST.has_key('rows'):
+        rows=int(request.POST.get('rows',""))
+        page=int(request.POST.get('page',""))
+    else:
+        page=1
+        rows=50
+    offset = (page-1)*rows
+
+    qa=''
+    state=''  
+    if(request.POST.has_key('QA')):
+        qa = request.POST.get('QA',"")
+    if(request.POST.has_key('state')):
+        state = request.POST.get('state',"")
+    if(qa=='所有'):
+        qa=''
+    if(state=='所有'):
+        state=''
+
+    sqlcountstr="select count(*) from ust_hangulstrings where column6= 'pvpcharacters'"
+    sqlstr="select * from ust_hangulstrings where column6= 'pvpcharacters'"
+    cursor.execute(sqlcountstr+" and QAer like '"+str(qa)+"%' and isFinished like '"+str(state)+"%'")
+    total=cursor.fetchall()[0][u'count(*)']  
+    cursor.execute(sqlstr+" and QAer like '"+str(qa)+"%' and isFinished like '"+str(state)+"%'"+" limit "+str(offset)+","+str(rows))
+    data=cursor.fetchall()
+    res['total']=total
+    res['rows']=data   
+    jsonRes=JSONEncoder().encode(res)
+    cursor.close()
+    conn.close()
+    return HttpResponse(jsonRes)
+
+
+def updateDataToMysql(request):
+    number=0
+    qa=''
+    state=''
+    if(request.POST.has_key('number')):
+        number = request.POST.get('number',"")
+    if(request.POST.has_key('QAer')):
+        qa = request.POST.get('QAer',"")
+    if(request.POST.has_key('isFinished')):
+        state = request.POST.get('isFinished',"")
+    conn= MySQLdb.connect(host='localhost',port = 3306,user='root',passwd='123456',db ='leiting',charset='utf8', cursorclass = MySQLdb.cursors.DictCursor)
+    cursor = conn.cursor()
+    mysqlStr="update ust_hangulstrings "
+    cursor.execute(mysqlStr+" set isFinished='"+str(state)+"', QAer='"+str(qa)+"' where column0="+str(number))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return HttpResponse('')

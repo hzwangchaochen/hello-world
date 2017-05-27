@@ -1,0 +1,17 @@
+ <html>
+     <head>
+        <title>最强军团完成状况统计</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+        <div>成功导入log文件</div>
+        {% for item in timeAll %}
+        <span>{{item}}</span><br>
+        {% endfor %}  
+		<div>
+            <a href="/webtool/analysis_performance/index/" onclick="">点击回到主页面</a>
+        </div>
+    </body>   
+ </html>
+ 

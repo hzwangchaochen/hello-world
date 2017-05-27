@@ -1,0 +1,223 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <title>MTL实验室</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/webtool/site_media/lib/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/jquery-easyui-1.4.2/locale/easyui-lang-zh_CN.js" type="text/javascript" charset="utf-8"></script>
+                    
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/default/easyui.css" type="text/css"></link>
+        <link rel="stylesheet" href="/webtool/site_media/lib/jquery-easyui-1.4.2/themes/icon.css" type="text/css"></link>
+        <script src="/webtool/site_media/lib/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/webtool/site_media/lib/layer/extend/layer.ext.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+            var currentProject='L10';
+            var currentSheet=null;
+			
+			function validate_required(field,alerttxt){
+				with (field){
+				  if (value==null||value==""){
+					  layer.alert(alerttxt);
+					  return false;
+					  }
+				  else if(alerttxt=="请填写测试机的分辨率(长)"){
+                    if(($("#reslength").val()%1)!=0){
+                        layer.alert("分辨率(长)必须为整数");
+                            return false;
+                        }
+                    }
+                  else if(alerttxt=="请填写测试机的分辨率(宽)"){
+                    if(($("#reswidth").val()%1)!=0){
+                        layer.alert("分辨率(宽)必须为整数");
+                            return false;
+                        }
+                    }
+                  else
+					  return true;
+                }
+			}
+			function validate_form(thisform){
+				with (thisform)
+				  {
+                    if (validate_required(scenename,"请填写场景名称")==false){
+                        scenename.focus();
+                        return false;
+                    }
+
+				  	if (validate_required(scenepic,"请选择要上传的场景图片")==false){
+						scenepic.focus();
+						return false;
+					}
+					if (validate_required(svnnum,"SNV号必须填写")==false){
+						svnnum.focus();
+						return false;
+					}
+					if (validate_required(cpufile,"请选择要上传cpu_stack.log的文件")==false){
+						cpufile.focus();
+						return false;
+					}
+                    if (validate_required(fpsfile,"请选择要上传fps.log的文件")==false){
+                        fpsfile.focus();
+                        return false;
+                    }
+                    if (validate_required(renderfile,"请选择要上传rendering.log的文件")==false){
+                        renderfile.focus();
+                        return false;
+                    }
+                    if (validate_required(memoryfile,"请选择要上传memory.log的文件")==false){
+                        memoryfile.focus();
+                        return false;
+                    }
+                    if (validate_required(phonetype,"请填写测试机型")==false){
+                        phonetype.focus();
+                        return false;
+                    }
+
+                    if (validate_required(reslength,"请填写测试机的分辨率(长)")==false){
+                        reslength.focus();
+                        return false;
+                    }
+
+                    if (validate_required(reswidth,"请填写测试机的分辨率(宽)")==false){
+                        reswidth.focus();
+                        return false;
+                    }
+				  }
+			}
+			
+		</script>
+		<style type="text/css">
+			body{
+				font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+				font-size:12px;
+			}
+			p, h1, form, button{border:0; margin:0; padding:0;}
+			.spacer{clear:both; height:1px;}
+			/* ———– My Form ———– */
+			.myform{
+				margin:0 auto;
+				width:450px;
+				padding:14px;
+			}
+			/* ———– stylized ———– */
+			#stylized{
+				border:solid 2px #b7ddf2;
+				background:#ebf4fb;
+			}
+			#stylized h1 {
+				font-size:14px;
+				font-weight:bold;
+				margin-bottom:8px;
+			}
+			#stylized p{
+				font-size:11px;
+				color:#666666;
+				margin-bottom:20px;
+				border-bottom:solid 1px #b7ddf2;
+				padding-bottom:10px;
+			}
+			#stylized label{
+				display:block;
+				font-weight:bold;
+				text-align:right;
+				width:140px;
+				float:left;
+			}
+			#stylized .small{
+				color:#666666;
+				display:block;
+				font-size:11px;
+				font-weight:normal;
+				text-align:right;
+				width:140px;
+			}
+			#stylized input{
+				float:left;
+				font-size:12px;
+				padding:4px 2px;
+				border:solid 1px #aacfe4;
+				width:200px;
+				margin:2px 0 20px 10px;
+			}
+			#stylized button{
+				clear:both;
+				margin-left:150px;
+				width:125px;
+				height:31px;
+				background:#666666 url(img/button.png) no-repeat;
+				text-align:center;
+				line-height:31px;
+				color:#FFFFFF;
+				font-size:11px;
+				font-weight:bold;
+			}
+		</style>
+    </head>
+	<body>
+		<nav class="navbar-default navbar-static-top" role="navigation" style="width:1600px;"> 
+            <div class="container-fluid"> 
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/webtool/unity_profiling/index/">首页</a>
+                </div>  
+            </div> 
+        </nav>
+		<div id="stylized" class="myform">
+			<form id="UnityForm" action="/webtool/unity_profiling/getFileContent/" onsubmit="return validate_form(this)" method="post" enctype="multipart/form-data">
+				<h1>Unity Profiler文件上传表单</h1>
+				<p>上传unity中通过profiler功能提取的性能测试结果</p>
+				<label for="projectname">项目名:</label>
+				<select id="projectname" name="projectname" style="width:60px;margin-left:10px">
+				   <option value="L10">L10</option>
+				   <option value="L12">L12</option>
+				   <option value="L13">L13</option>
+				   <option value="L15">L15</option>
+                   <option value="LX6">LX6</option>
+                   <option value="LH01">LH01</option>
+                   <option value="盘古">盘古</option>
+				</select><br><br>
+				<label for="scenename">场景名:
+					<span class="small">禁用下划线等分隔符</span>
+				</label>
+				<input type="text" name="scenename" id="scenename"/><br>
+				<label for="scenepic">场景图片:
+					<span class="small">推荐分辨率****</span>
+				</label>
+				<input type="file" name="scenepic" id="scenepic"/><br>
+				<label for="scenedes">场景描述:
+					<span class="small">选填，不超过20字</span>
+				</label>
+				<input type="text" name="scenedes" id="scenedes"/><br>
+				<label for="cpufile">cpu_stack.log文件:</label>
+				<input type="file" name="cpufile" id="cpufile"/><br>
+				<label for="fpsfile">fps.log文件:</label>
+				<input type="file" name="fpsfile" id="fpsfile"/><br>
+				<label for="renderfile">rendering.log文件:</label>
+				<input type="file" name="renderfile" id="renderfile"/><br>
+				<label for="memoryfile">memory.log文件:</label>
+				<input type="file" name="memoryfile" id="memoryfile"/><br>
+
+				<label for="csvfile">.csv文件:
+                    <span class="small">选填</span>
+                </label>
+				<input type="file" name="csvfile" id="csvfile"/><br>
+				<label for="svnnum">SVN号:</label>
+				<input type="text" name="svnnum" id="svnnum"/><br>
+
+                <label for="phonetype">测试机型:</label>
+                <input type="text" name="phonetype" id="phonetype"/><br>
+                <label for="reslength">分辨率（长）:</label>
+                <input type="text" name="reslength" id="reslength"/>
+                <label for="reswidth">分辨率（宽）:</label>
+                <input type="text" name="reswidth" id="reswidth"/><br>
+
+				<button type="submit">提交</button>
+				<div class="spacer"></div>
+			</form>
+		</div>
+	</body>
+</html>
